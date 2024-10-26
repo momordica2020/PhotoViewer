@@ -43,25 +43,33 @@ namespace PhotoViewer
         {
             try
             {
-                string path = Path.GetDirectoryName(pic);
-
-                //string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
-                //Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
-                //path = r.Replace(path, "");
-                var searchPattern = new Regex(@"$(?<=\.(jpg|jpeg|png|bmp|gif))", RegexOptions.IgnoreCase);
-                pics = Directory.GetFiles(path, "*.*").Where(f => searchPattern.IsMatch(f)).ToArray();
-                for (int i = 0; i < pics.Length; i++)
+                if (string .IsNullOrWhiteSpace(pic))
                 {
-                    if (pics[i] == pic)
+                    // empty img
+                }
+                else
+                {
+                    string path = Path.GetDirectoryName(pic);
+
+                    //string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+                    //Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+                    //path = r.Replace(path, "");
+                    var searchPattern = new Regex(@"$(?<=\.(jpg|jpeg|png|bmp|gif))", RegexOptions.IgnoreCase);
+                    pics = Directory.GetFiles(path, "*.*").Where(f => searchPattern.IsMatch(f)).ToArray();
+                    for (int i = 0; i < pics.Length; i++)
                     {
-                        now_pic = i;
-                        break;
+                        if (pics[i] == pic)
+                        {
+                            now_pic = i;
+                            break;
+                        }
                     }
+
+                    ShowImage();
                 }
 
-                ShowImage();
             }
-            catch
+            catch(Exception ex)
             {
                 Environment.Exit(0);
             }

@@ -56,11 +56,12 @@ namespace PhotoViewer
             string now_file = "";
             if (cmd.Length >= 2)
             {
-                now_file = cmd[1];
+                now_file = cmd[1]; 
+                
             }
             else
             {
-                Environment.Exit(0);
+                //Environment.Exit(0);
             }
             pc.OnFrameChanged += OnImageFrameChanged;
             pc.LoadImageList(now_file);
