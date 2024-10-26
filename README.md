@@ -7,7 +7,7 @@ a simple photo viewer. written with c#
 
 ## 运行环境
 
-- .net framework 4.0+
+- .net 8.0
 
 ## 特点
 
